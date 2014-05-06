@@ -1,6 +1,7 @@
 // Adapter for "promises-aplus-tests" test runner
 
-var Promise = require(__dirname + "/lib/npo.src.js");
+var path = require("path");
+var Promise = require(path.join(__dirname,"/npo.js"));
 
 module.exports.deferred = function __deferred__() {
 	var o = {};
