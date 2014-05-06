@@ -34,8 +34,8 @@ This polyfill/shim is aiming to be "spec compliant" in the sense of passing all 
 Test status at present:
 
 ```
-824 passing
-48 failing
+848 passing
+24 failing
 ```
 
 To run the test suite after cloning this repo, run `npm install` to install the dev-dependencies, then run `npm test`.
