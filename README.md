@@ -4,7 +4,7 @@ A polyfill for native ES6 Promises that deviates as little as possible from the 
 
 ## Known Limitations
 
-A promise object **will be** an instance of the `Promise` object:
+A promise object **will be** an instance of the `Promise` constructor:
 
 ```js
 var p = new Promise(..);
