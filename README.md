@@ -1,6 +1,6 @@
 # Native Promise Only (NPO)
 
-A polyfill for native ES6 Promises that as close as possible (no extensions) to the strict spec definitions.
+A polyfill for native ES6 Promises as close as possible (no extensions) to the strict spec definitions.
 
 ## Intent
 
