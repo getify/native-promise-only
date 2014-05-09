@@ -107,7 +107,12 @@ Get your feet wet with native promises first, but then when you go looking for s
 
 *Native Promise Only* is "spec compliant" in the sense of passing all tests in the [Promises/A+ Test Suite](https://github.com/promises-aplus/promises-tests).
 
-To run the test suite after cloning this repo, run `npm install` to install the dev-dependencies, then run `npm test`.
+To run the test suite:
+
+1. Either git-clone this repo or run `npm install native-promise-only`, and then switch into that project root.
+2. Run `npm install` in the project root to install the dev-dependencies.
+3. If you got the project from the git repo (not npm), then run `./build.js` or `npm run-script build` to build the minified "npo.js" in the project root.
+4. Finally, run `npm test`.
 
 However, there are definitely other tests that need to be added, for example testing the `Promise()` constructor's behavior, as well as the `Promise.*` static helpers (`resolve(..)`, `reject(..)`, `all(..)`, and `race(..)`), none of which are covered by Promises/A+ test suite.
 
