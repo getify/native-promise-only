@@ -18,7 +18,9 @@ var p = new Promise(..);
 p instanceof Promise; // true
 ```
 
-However, these promise instances don't inherit (delegate to) a *meaningful* `Promise.prototype` object for their methods. That is:
+However, these promise instances don't inherit (delegate to) a *meaningful* `Promise.prototype` object for their methods (there is one, it's just mostly empty).
+
+Consider:
 
 ```js
 var p = new Promise(..);
@@ -37,14 +39,16 @@ Any trade-off is a shame, but this one is the least of a few evils, and probably
 
 ## ES5 Assumption
 
-This polyfill assumes various ES5 capabilities, such as `Function#bind` and `Array#forEach`. If you need to use this polyfill in older JS environments, make sure to provide polyfills/shims [such as these](https://github.com/es-shims/es5-shim).
+This polyfill assumes various ES5+ capabilities, such as `Function#bind` and `Array#forEach`. If you need to use this polyfill in pre-ES5 environments, make sure to provide polyfills/shims [such as these](https://github.com/es-shims/es5-shim).
 
-*Native Promise Only* needs (all of which have compliant ES5 shims):
+*Native Promise Only* needs:
 
 * `Array.isArray`
 * `Array#forEach`
 * `Array#some`
 * `Function#bind`
+* `Object.defineProperty`
+* `Object.getPrototypeOf`
 
 ## Usage
 
@@ -107,14 +111,14 @@ Get your feet wet with native promises first, but then when you go looking for s
 
 *Native Promise Only* is "spec compliant" in the sense of passing all tests in the [Promises/A+ Test Suite](https://github.com/promises-aplus/promises-tests).
 
-To run the test suite:
+To run all tests:
 
 1. Either git-clone this repo or run `npm install native-promise-only`, and then switch into that project root.
 2. Run `npm install` in the project root to install the dev-dependencies.
-3. If you got the project from the git repo (not npm), then run `./build.js` or `npm run-script build` to build the minified "npo.js" in the project root.
+3. If you didn't get *native-promise-only* from npm, then from the project root, run `./build.js` or `node build.js` or `npm run build` to generate the minified "npo.js" in the project root.
 4. Finally, run `npm test`.
 
-However, there are definitely other tests that need to be added, for example testing the `Promise()` constructor's behavior, as well as the `Promise.*` static helpers (`resolve(..)`, `reject(..)`, `all(..)`, and `race(..)`), none of which are covered by Promises/A+ test suite.
+**Note:** Other tests need to be added, such as testing the `Promise()` constructor's behavior, as well as the `Promise.*` static helpers (`resolve(..)`, `reject(..)`, `all(..)`, and `race(..)`), none of which are covered by the Promises/A+ test suite.
 
 Developing a more comprehensive test-suite to augment the  Promises/A+ test suite **is now another primary goal** of this project.
 
