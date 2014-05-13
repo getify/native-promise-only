@@ -48,7 +48,6 @@ This polyfill assumes various ES5+ capabilities, such as `Function#bind` and `Ar
 * `Array#some`
 * `Function#bind`
 * `Object.defineProperty`
-* `Object.getPrototypeOf`
 
 ## Usage
 
