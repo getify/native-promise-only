@@ -50,7 +50,7 @@ This polyfill assumes various ES5+ capabilities, such as `Function#bind` and `Ar
 
 ## Usage
 
-To use this polyfill in the browser, include the "npo.js" file with your site's scripts. It's a polyfill, which means it will not overwrite `Promise` if it exists as a global already, so it's safe to include unconditionally.
+To use this polyfill in the browser, include the "npo.js" file (see the instructions in [Tests/Compliance section](#testscompliance) below for how to build "npo.js" if you don't have it already) with your site's scripts. It's a polyfill, which means it will not overwrite `Promise` if it exists as a global already, so it's safe to include unconditionally.
 
 To use with AMD, import the "npo.js" file module.
 
