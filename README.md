@@ -47,7 +47,6 @@ This polyfill assumes various ES5+ capabilities, such as `Function#bind` and `Ar
 * `Array#forEach`
 * `Array#some`
 * `Function#bind`
-* `Object.defineProperty`
 
 ## Usage
 
