@@ -1,6 +1,6 @@
 {
 	"name": "native-promise-only",
-	"version": "0.2.0-a",
+	"version": "0.2.1-a",
 	"description": "Native Promise Only: A polyfill for native ES6 Promises **only**, nothing else.",
 	"main": "./npo.js",
 	"scripts": {
