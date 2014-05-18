@@ -6,11 +6,47 @@ A polyfill for native ES6 Promises as close as possible (no extensions) to the s
 
 The aim of this project is to be the smallest (and maybe the fastest!?) polyfill for Promises, staying as close as possible to what's specified in both [Promises/A+](http://promisesaplus.com) and the upcoming ES6 specification (**link needed**).
 
-An equally important goal is to avoid exposing any capability for promise-state to be mutated externally. The next section explains the trade-offs of that balance.
+An equally important goal is to avoid exposing any capability for promise-state to be mutated externally. The [Known Limitations](#known-limitations) section below explains the trade-offs of that balance.
+
+## Usage
+
+To use this polyfill in the browser, include the "npo.js" file (see the instructions in [Tests/Compliance section](#testscompliance) below for how to build "npo.js" if you don't have it already) with your site's scripts. It's a polyfill, which means it will not overwrite `Promise` if it exists as a global already, so it's safe to include unconditionally.
+
+To use with AMD, import the "npo.js" file module.
+
+To use the polyfill in node, run:
+
+```
+npm install native-promise-only
+```
+
+Then require the module into your node code like this:
+
+```
+var Promise = require("native-promise-only");
+```
+
+Other than the below [Known Limitations](#known-limitations) discussion and some browser bugs (such as [these](https://gist.github.com/getify/bd11ccf1eff2efdac0fb)) which **this polyfill doesn't suffer from**, your promises should operate the same in all JS environments.
+
+Exactly like native promises, here's a quick example of how you create and use the polyfilled promises:
+
+```js
+var p = new Promise(function(resolve,reject){
+	setTimeout(function(){
+		resolve("Yay!");
+	},100);
+});
+
+p.then(function(msg){
+	console.log(msg); // Yay!
+});
+```
+
+For more on how to use and enjoy native (or polyfilled!) promises, check out [JavaScript Promises](http://www.html5rocks.com/en/tutorials/es6/promises/) by [Jake Archibald](http://twitter.com/jaffathecake).
 
 ## Known Limitations
 
-On the bright side, a promise object from this polyfill **will be** an instance of the `Promise` constructor, which makes identification of genuine promises easier:
+A promise object from this polyfill **will be** an instance of the `Promise` constructor, which makes identification of genuine promises easier:
 
 ```js
 var p = new Promise(..);
@@ -39,50 +75,14 @@ Any trade-off is a shame, but this one is the least of a few evils, and probably
 
 ## ES5 Assumption
 
-This polyfill assumes various ES5+ capabilities, such as `Function#bind` and `Array#forEach`. If you need to use this polyfill in pre-ES5 environments, make sure to provide polyfills/shims [such as these](https://github.com/es-shims/es5-shim).
+This polyfill assumes some ES5+ capabilities, such as `Function#bind` and `Array#forEach`. If you need to use this polyfill in pre-ES5 environments, make sure to provide polyfills/shims [such as these](https://github.com/es-shims/es5-shim).
 
-*Native Promise Only* needs:
+Specifically, *Native Promise Only* needs:
 
 * `Array.isArray`
 * `Array#forEach`
 * `Array#some`
 * `Function#bind`
-
-## Usage
-
-To use this polyfill in the browser, include the "npo.js" file (see the instructions in [Tests/Compliance section](#testscompliance) below for how to build "npo.js" if you don't have it already) with your site's scripts. It's a polyfill, which means it will not overwrite `Promise` if it exists as a global already, so it's safe to include unconditionally.
-
-To use with AMD, import the "npo.js" file module.
-
-To use the polyfill in node, run:
-
-```
-npm install native-promise-only
-```
-
-Then require the module into your node code like this:
-
-```
-var Promise = require("native-promise-only");
-```
-
-Other than the above "Known Limitations" discussion and some browser bugs (such as [these](https://gist.github.com/getify/bd11ccf1eff2efdac0fb)) which **this polyfill doesn't have**, your promises should operate the same in all JS environments.
-
-Exactly like native promises, here's a quick example of how you create and use the polyfilled promises:
-
-```js
-var p = new Promise(function(resolve,reject){
-	setTimeout(function(){
-		resolve("Yay!");
-	},100);
-});
-
-p.then(function(msg){
-	console.log(msg); // Yay!
-});
-```
-
-For more on how to use and enjoy native (or polyfilled!) promises, check out [JavaScript Promises](http://www.html5rocks.com/en/tutorials/es6/promises/) by [Jake Archibald](http://twitter.com/jaffathecake).
 
 ## Still Want More?
 
