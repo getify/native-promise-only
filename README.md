@@ -67,7 +67,9 @@ Object.getOwnPropertyNames( Promise.prototype ); // [ constructor ]
 
 As such, these promises are not really "sub-classable" in the ES6 `class` / `extends` sense, though theoretically you should be able to do that in ES6 with the built-in Promises.
 
-The reason for this deviation is that there's a choice between having delegated methods on the `.prototype` or having private state. Since **the spirit of promises was always to ensure trustability** -- that promises were immutable (from the outside) to everyone except the initial resolver/deferred -- private state is a critically important feature to preserve.
+To read a full explanation of why, read [Part 3: The Trust Problem](http://blog.getify.com/promises-part-3/) of my blog post series on Promises.
+
+Briefly, the reason for this deviation is that there's a choice between having delegated methods on the `.prototype` or having private state. Since **the spirit of promises was always to ensure trustability** -- that promises were immutable (from the outside) to everyone except the initial resolver/deferred -- private state is a critically important feature to preserve.
 
 Many other ES6 promise shims/libs seem to have forgotten that important point, as many of them either expose the state publicly on the object instance or provide public accessor methods which can externally mutate a promise's state. Both of these deviations are **intolerable** in my opinion, so this library chose the opposite trade-off: *no ES6 sub-classing*.
 
