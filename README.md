@@ -20,10 +20,20 @@ To use the polyfill in node, run:
 npm install native-promise-only
 ```
 
-Then require the module into your node code like this:
+Then require the module into your node code.
 
+```js
+require("native-promise-only");
 ```
+
+Notice that using the module in this way, we don't assign the module's public API to any variable. **We don't need to**, because it's a polyfill that intentionally patches the global environment (in this case to the `Promise` name) once included.
+
+If you *want* to also have a reference pointing to the same `Promise` global, you *can also* assign the return value from the `require(..)` statement, but it's strongly recommended that you use the same `Promise` name so as to not create confusion:
+
+```js
 var Promise = require("native-promise-only");
+
+// Promise === global.Promise; // true!
 ```
 
 Other than the below [Known Limitations](#known-limitations) discussion and some browser bugs (such as [these](https://gist.github.com/getify/bd11ccf1eff2efdac0fb)) which **this polyfill doesn't suffer from**, your promises should operate the same in all JS environments.
