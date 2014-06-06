@@ -1,0 +1,15 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = false
+
+[*.js]
+indent_size = 8
+indent_style = tab
+
+
+[*.json]
+indent_size = 8
+indent_style = tab
