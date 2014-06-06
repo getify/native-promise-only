@@ -52,7 +52,10 @@ p.then(function(msg){
 });
 ```
 
-For more on how to use and enjoy native (or polyfilled!) promises, check out [JavaScript Promises](http://www.html5rocks.com/en/tutorials/es6/promises/) by [Jake Archibald](http://twitter.com/jaffathecake).
+For more on promises, check these blog posts out:
+
+1. Back-story on the hows and whys behind promises (chaining, errors, etc): [multi-part blog post series "Promises"](http://blog.getify.com/promises-part-1/) by [getify](http://twitter.com/getify) (me).
+2. Using and enjoying native promises: [JavaScript Promises](http://www.html5rocks.com/en/tutorials/es6/promises/) by [Jake Archibald](http://twitter.com/jaffathecake).
 
 ## Known Limitations
 
@@ -100,9 +103,9 @@ Specifically, *Native Promise Only* needs:
 
 This project intentionally adheres pretty strictly to the narrow core of [Promises/A+](http://promisesaplus.com) as adopted/implemented by ES6 into the native `Promise()` mechanism.
 
-But it's quite likely that you will experience a variety of scenarios in which using *only* native promises might be tedious, limiting, or more trouble than it's worth. There's good reason why most other **Promises/A+** "compliant" libs are actually superset extensions on the narrow core: **because async flow-control is often quite complex in the real world.**
+But it's quite likely that you will [experience a variety of scenarios](http://blog.getify.com/promises-part-5/) in which using *only* native promises might be tedious, limiting, or more trouble than it's worth. There's good reason why most other **Promises/A+** "compliant" libs are actually superset extensions on the narrow core: **because async flow-control is often quite complex in the real world.**
 
-*Native Promise Only* will not add any of these extra flourishes. Sorry.
+*Native Promise Only* will **NOT** add any of these extra flourishes. Sorry.
 
 **However, I have another project**: [asynquence](http://github.com/getify/asynquence) (async + sequence). It's an abstraction on top of the promises concept (promises are hidden inside), designed to drastically improve the readability and expressiveness of your async flow-control code.
 
