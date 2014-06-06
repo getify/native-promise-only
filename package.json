@@ -5,7 +5,7 @@
 	"main": "./npo.js",
 	"scripts": {
 		"test": "promises-aplus-tests test_adapter.js",
-		"cover": "istanbul cover --print=both ./node_modules/mocha/bin/_mocha",
+		"cover": "istanbul cover -x npo.js --print=both ./node_modules/mocha/bin/_mocha",
 		"build": "./build.js"
 	},
 	"devDependencies": {

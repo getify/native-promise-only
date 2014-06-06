@@ -7,6 +7,7 @@ trim_trailing_whitespace = false
 
 [*.js]
 indent_size = 8
+tab_width = 8
 indent_style = tab
 
 
