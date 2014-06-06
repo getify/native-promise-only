@@ -1,21 +1,35 @@
+"use strict";
 // Adapter for "promises-aplus-tests" test runner
-
 var path = require("path");
-var Promise = require(path.join(__dirname,"/npo.js"));
 
-module.exports.deferred = function __deferred__() {
-	var o = {};
-	o.promise = new Promise(function __Promise__(resolve,reject){
-		o.resolve = resolve;
-		o.reject = reject;
-	});
-	return o;
+function chooseSource(file) {
+	file = file || "/npo.js"; // default to uglified
+	
+	var Promise = require(path.join(__dirname,file));
+	setExports(module.exports, Promise);
+	
+	return module.exports;
 };
+module.exports = chooseSource;
 
-module.exports.resolved = function __resolved__(val) {
-	return Promise.resolve(val);
-};
+function setExports(exports, Promise) {
+	exports.deferred = function __deferred__() {
+		var o = {};
+		o.promise = new Promise(function __Promise__(resolve,reject){
+			o.resolve = resolve;
+			o.reject = reject;
+		});
+		return o;
+	};
+	
+	exports.resolved = function __resolved__(val) {
+		return Promise.resolve(val);
+	};
+	
+	exports.rejected = function __rejected__(reason) {
+		return Promise.reject(reason);
+	};
+}
 
-module.exports.rejected = function __rejected__(reason) {
-	return Promise.reject(reason);
-};
+// call with default of undefined; backwards-compatible with old use of adapter
+chooseSource();
