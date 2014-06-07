@@ -47,7 +47,7 @@ describe("ES6 Promise.all", function () {
 			var p = Promise.all([]);
 			assert.ok(p instanceof Promise);
 			p.then(expectedResolveDeep([], done),
-			       unexpectedReject );
+			       unexpectedReject);
 		});
 	});
 
