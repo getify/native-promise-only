@@ -3,8 +3,6 @@
 var assert = require("assert"),
     path = require("path");
 
-require("../lib/npo.src.js");
-
 describe("simple promise and resolve/reject", function () {
 
     it("should resolve on a timer", function (done) {

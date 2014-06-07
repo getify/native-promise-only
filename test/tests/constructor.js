@@ -2,7 +2,6 @@
 
 var assert = require("assert"),
     path = require("path");
-require(path.join(__dirname,"../lib/npo.src.js"));
 
 var helpers = require("./helpers.js");
 var resolveAfter = helpers.resolveAfter;
