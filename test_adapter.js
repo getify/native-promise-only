@@ -3,7 +3,7 @@
 var path = require("path");
 
 function chooseSource(file) {
-	file = file || "/npo.js"; // default to uglified
+	file = file || "/lib/npo.src.js"; // default to un-uglified
 	
 	var Promise = require(path.join(__dirname,file));
 	setExports(module.exports, Promise);
