@@ -1,4 +1,3 @@
-/*jslint indent: 8*/
 /*global Promise, require, setImmediate, setTimeout, describe, it */
 "use strict";
 
@@ -7,8 +6,14 @@ var assert = require("assert");
 var helpers = require("./helpers.js");
 Object.keys(helpers).map(function (name) { global[name] = helpers[name]; });
 
+describe("25.4.4.2 Promise.prototype", function () {
+    it("is the Promise prototype object");
+    it("has attribute [[Writable]]: false");
+    it("has attribute [[Enumerable]]: false");
+    it("has attribute [[Configurable]]: false");
+});
 
-describe("ES6 25.4.5 Properties of the Promise Prototype Object", function () {
+describe("25.4.5 Properties of the Promise Prototype Object", function () {
 	it("is an ordinary object");
 	it("is not a Promise"); // implied
 });
@@ -22,7 +27,8 @@ describe("25.4.5.1 Promise.prototype.catch( onRejected )", function () {
 
 describe("25.4.5.2 Promise.prototype.constructor", function () {
 	it("is an object");
-	it("is the Promise object");
+	it("is a function");
+	it("is the Promise constructor");
 });
 
 describe("25.4.5.3 Promise.prototype.then", function () {
@@ -35,11 +41,12 @@ describe("25.4.5.3 Promise.prototype.then", function () {
 		var errorObject = {};
 		var p = new Promise(function (resolve, reject) { reject(errorObject); });
 
-		// if IsCallable( onRejected ) returns false, then let onRejected be Thrower
-		// Thrower is a function which throws its first argument
-		// p.then(f) passes 'undefined' as onRejected, so onRejected should
-		// default to Thrower, which should throw the argument passed to it from
-		// reject
+		// if IsCallable( onRejected ) returns false, then let
+		// onRejected be Thrower Thrower is a function which
+		// throws its first argument p.then(f) passes
+		// 'undefined' as onRejected, so onRejected should
+		// default to Thrower, which should throw the argument
+		// passed to it from reject
 		assert.throws(function () {
 			p.then(unexpectedResolve);
 		}, function(err) {
