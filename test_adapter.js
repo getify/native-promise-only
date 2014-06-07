@@ -29,6 +29,14 @@ function setExports(exports, Promise) {
 	exports.rejected = function __rejected__(reason) {
 		return Promise.reject(reason);
 	};
+
+        exports.defineGlobalPromise = function __defineGlobalPromise__(globalScope) {
+	    globalScope.Promise = Promise;
+	};
+
+        exports.removeGlobalPromise = function __defineGlobalPromise__(globalScope) {
+	    delete globalScope.Promise;
+	};
 }
 
 // call with default of undefined; backwards-compatible with old use of adapter
