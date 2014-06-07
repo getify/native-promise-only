@@ -24,6 +24,16 @@ function normalizeAdapter(adapter) {
     }
 }
 
+function setUpAdapter(adapter) {
+    global.adapter = adapter;
+    adapter.defineGlobalPromise(global);
+}
+
+function tearDownAdapter(adapter) {
+    adapter.removeGlobalPromise(global);
+    delete global.adapter;
+}
+
 module.exports = function (adapter, mochaOpts, cb) {
     if (typeof mochaOpts === "function") {
         cb = mochaOpts;
@@ -53,9 +63,9 @@ module.exports = function (adapter, mochaOpts, cb) {
             }
         });
 
-        global.adapter = adapter;
+	setUpAdapter(adapter);
         mocha.run(function (failures) {
-            delete global.adapter;
+	    tearDownAdapter(adapter);
             if (failures > 0) {
                 var err = new Error("Test suite failed with " + failures + " failures.");
                 err.failures = failures;
@@ -70,7 +80,7 @@ module.exports = function (adapter, mochaOpts, cb) {
 module.exports.mocha = function (adapter) {
     normalizeAdapter(adapter);
 
-    global.adapter = adapter;
+    setUpAdapter(adapter);
 
     var testFileNames = fs.readdirSync(testsDir);
     testFileNames.forEach(function (testFileName) {
@@ -80,5 +90,5 @@ module.exports.mocha = function (adapter) {
         }
     });
 
-    delete global.adapter;
+    tearDownAdapter(adapter);
 };
