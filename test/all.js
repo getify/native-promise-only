@@ -3,62 +3,11 @@
 "use strict";
 
 var assert = require("assert");
-var path = require("path");
 
 require("../lib/npo.src.js");
 
-function unexpectedResolve(resolved) {
-	throw "Unexpected resolve " + resolved;
-}
-
-function unexpectedReject(err) { 
-	throw "Unexpected reject " + err;
-}
-
-function resolveImmediately(arg) {
-	return function (resolve, reject) {
-		setImmediate(function () { resolve(arg); });
-	};
-}
-
-function rejectImmediately(arg) {
-	return function (resolve, reject) {
-		setImmediate(function () { reject(arg); });
-	};
-}
-
-function resolveAfter(time, arg) {
-	return function (resolve, reject) {
-		setTimeout(function () { resolve(arg); }, time);
-	};
-}
-
-function rejectAfter(time, arg) {
-	return function (resolve, reject) {
-		setTimeout(function () { reject(arg); }, time);
-	};
-}
-
-function expectedResolve(obj, done) {
-	return function (resolved) {
-		assert.equal(obj, resolved);
-		done();
-	};
-}
-
-function expectedResolveDeep(obj, done) {
-	return function (resolved) {
-		assert.deepEqual(obj, resolved);
-		done();
-	};
-}
-
-function expectedReject(obj, done) {
-	return function (resolved) {
-		assert.equal(obj, resolved);
-		done();
-	};
-}
+var helpers = require("./helpers.js");
+Object.keys(helpers).map(function (name) { global[name] = helpers[name]; });
 
 // behavior from:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Static_methods
