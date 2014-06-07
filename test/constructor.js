@@ -14,4 +14,12 @@ describe("Promise constructor", function () {
 
 	assert.ok(p instanceof Promise);
     });
+    
+    describe("per ES6 draft", function () {
+	describe("25.4.4 Properties of the Promise Constructor", function () {
+	    it("has a length property whose value is 1", function () {
+		assert.equal(1, Promise.length);
+	    });
+	});
+    });
 });
