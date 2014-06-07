@@ -35,7 +35,10 @@ describe("25.4.4.1 Promise.all( iterable )", function () {
 	});
 
 	it("should immediately reject for non-iterable argument", function (done) {
-		var nonIterable = 3;  // non-Object fails CheckIterable per 7.4.1
+		var nonIterable = 3;
+
+		// non-Object fails CheckIterable per 7.4.1
+		// GetIterator throws TypeError per 7.4.2
 		
 		Promise.all(nonIterable).then(unexpectedResolve, function (err) {
 			assert.ok(err instanceof TypeError);
