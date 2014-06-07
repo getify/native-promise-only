@@ -3,7 +3,6 @@
 "use strict";
 
 var assert = require("assert");
-var util = require("util");
 
 var helpers = require("./helpers.js");
 Object.keys(helpers).map(function (name) { global[name] = helpers[name]; });
@@ -32,12 +31,17 @@ describe("ES6 25.4.4.3 Promise.race( iterable )", function () {
 		assert.throws(function () {
 			Promise.race.call(empty, []);
 		}, TypeError);
-		done();
+		   done();
 	});
 
 	it("requires 'this' to provide a 'resolve' method", function (done) {
 		var Extended = {};
+		
+		// NOTE node.js specific feature
+		var util = require("util");
 		util.inherits(Extended, Promise);
+		// END NOTE node.js specific feature
+		
 		Extended.resolve = 3;
 		assert.equal('number', typeof Extended.resolve);
 		
