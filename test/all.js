@@ -28,10 +28,9 @@ describe("ES6 Promise.all", function () {
 		});
 	});
 	
-	it("should immediately reject for non-Array argument", function (done) {
+	it("should immediately reject for non-Iterable argument", function (done) {
 		Promise.all({}).then(unexpectedResolve, function (err) {
 			assert.ok(err instanceof TypeError);
-			assert.equal("Not an array", err.message);
 			done();
 		});
 
