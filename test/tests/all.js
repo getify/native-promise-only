@@ -143,3 +143,6 @@ describe("with 2-element array", function () {
 		});
 	});
 });
+
+// not explicitly addressed: 25.4.4.1.1 Promise.all Resolve Element Functions
+// these are not visible from userland js
