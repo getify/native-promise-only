@@ -3,7 +3,6 @@
 var Mocha = require("mocha");
 var path = require("path");
 var fs = require("fs");
-var _ = require("underscore");
 
 var testsDir = path.resolve(__dirname, "tests");
 
@@ -35,7 +34,10 @@ module.exports = function (adapter, mochaOpts, cb) {
     }
 
     normalizeAdapter(adapter);
-    mochaOpts = _.defaults(mochaOpts, { timeout: 200, slow: Infinity });
+
+    // can't reach npm server
+    mochaOpts.timeout = mochaOpts.timeout || 200;
+    mochaOpts.slow = mochaOpts.slow || Infinity;
 
     fs.readdir(testsDir, function (err, testFileNames) {
         if (err) {
