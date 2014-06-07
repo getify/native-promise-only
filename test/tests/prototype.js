@@ -3,7 +3,6 @@
 "use strict";
 
 var assert = require("assert");
-require("../lib/npo.src.js");
 
 var helpers = require("./helpers.js");
 Object.keys(helpers).map(function (name) { global[name] = helpers[name]; });
