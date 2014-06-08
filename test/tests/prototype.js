@@ -7,15 +7,22 @@ var helpers = require("./helpers.js");
 Object.keys(helpers).map(function (name) { global[name] = helpers[name]; });
 
 describe("25.4.4.2 Promise.prototype", function () {
-    it("is the Promise prototype object");
+    it("is the Promise prototype object", function () {
+	var p = new Promise(neverResolve);
+
+	assert.ok(p instanceof Promise);
+	// TODO(Sam): is there any way to ensure that there are no
+	// other objects in the prototype chain?
+	assert.ok(Promise.prototype instanceof Object);
+    });
     it("has attribute [[Writable]]: false");
     it("has attribute [[Enumerable]]: false");
     it("has attribute [[Configurable]]: false");
 });
 
 describe("25.4.5 Properties of the Promise Prototype Object", function () {
-	it("is an ordinary object");
-	it("is not a Promise"); // implied
+    it("is an ordinary object");
+    it("is not a Promise"); // implied
 });
 
 describe("25.4.5.1 Promise.prototype.catch( onRejected )", function () {
