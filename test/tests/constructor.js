@@ -49,7 +49,8 @@ describe("25.4.3.1 Promise ( executor )", function () {
 	
 	// receive first resolution
 	p.then(function (resolved) {
-	    assert.equal(resolved, 1);
+	    assert.equal(1, resolved);
+	    done();
 	});
     });
 
