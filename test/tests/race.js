@@ -7,7 +7,7 @@ var assert = require("assert");
 var helpers = require("./helpers.js");
 Object.keys(helpers).map(function (name) { global[name] = helpers[name]; });
 
-describe("ES6 25.4.4.3 Promise.race( iterable )", function () {
+describe("25.4.4.3 Promise.race( iterable )", function () {
 	it("is a function", function () {
 		assert.equal("function", typeof Promise.race);
 	});
@@ -52,7 +52,7 @@ describe("ES6 25.4.4.3 Promise.race( iterable )", function () {
 	});
 });
 
-describe("Promise.race with 0-element array", function () {
+describe("25.4.4.3 Promise.race with 0-element array", function () {
 	it("should accept an empty array", function () {
 		var p = Promise.race([]);
 		assert.ok(p instanceof Promise);
@@ -64,7 +64,7 @@ describe("Promise.race with 0-element array", function () {
 	});
 });
 
-describe("Promise.race with 1-element array", function () {
+describe("25.4.4.3 Promise.race with 1-element array", function () {
 	it("should accept an array of one promise", function (done) {
 		var p1 = new Promise(resolveImmediately(1));
 		
@@ -85,7 +85,7 @@ describe("Promise.race with 1-element array", function () {
 	});
 });
 
-describe("Promise.race with 2-element array", function () {
+describe("25.4.4.3 Promise.race with 2-element array", function () {
 	it("should accept an array of two promises", function (done) {
 		var p1 = new Promise(resolveAfter(10, 1)),
 		    p2 = new Promise(resolveAfter(20, 2));
