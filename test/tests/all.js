@@ -16,14 +16,15 @@ Object.keys(helpers).map(function (name) { global[name] = helpers[name]; });
 
 
 describe("25.4.4.1 Promise.all( iterable )", function () {
-	it("appears to be a function", function () {
+	it("is a function", function () {
 		assert.equal("function", typeof Promise.all);
 	});
 	it("has a length property whose value is 1", function () {
 		assert.equal(1, Promise.all.length);
 	});
-	it("requires the 'this' value to be a constructor function that suppports the " +
-	   "parameter conventions of the Promise constructor", function () {
+	it("throws if 'this' is not a Promise constructor", function () {
+	    // requires the 'this' value to be a constructor function that suppports the
+	    // parameter conventions of the Promise constructor
 		   var empty = {};
 
 		   assert.throws(function () { 
@@ -46,7 +47,7 @@ describe("25.4.4.1 Promise.all( iterable )", function () {
 });
 
 // 0 elements
-describe("Promise.all with 0-element array", function () {
+describe("25.4.4.1 Promise.all with 0-element array", function () {
 
 	it("should accept an empty array", function () {
 		var p = Promise.all([]);
@@ -62,7 +63,7 @@ describe("Promise.all with 0-element array", function () {
 });
 
 // 1 element
-describe("Promise.all with 1-element array", function () {
+describe("25.4.4.1 Promise.all with 1-element array", function () {
 
 	it("should accept an array of one promise", function (done) {
 		var p1 = new Promise(resolveImmediately(1));
@@ -89,7 +90,7 @@ describe("Promise.all with 1-element array", function () {
 });
 	
 // 2 elements
-describe("with 2-element array", function () {
+describe("25.4.4.1 with 2-element array", function () {
 	it("should accept an array of two promises", function (done) {
 		var p1 = new Promise(resolveImmediately(1)),
 		    p2 = new Promise(resolveImmediately(2));
