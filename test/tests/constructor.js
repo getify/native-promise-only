@@ -10,11 +10,25 @@ describe("25.4.3 The Promise Constructor", function () {
     it("is the initial value of the Promise property of the global object", function () {
 	assert.strictEqual(Promise, global.Promise);
     });
-    it("can be called as a function"); // to initialize the Promise.prototype methods ?!
+
+    // "When Promise is called as a function rather than as a constructor, it initializes
+    // its 'this' value with the internal state necessary to suppot the 'Promise.prototype'
+    // methods.
+    it("can be called as a function", function () {
+	assert.doesNotThrow(function () {
+	    Promise();
+	}, "expect a bare call to Promise() to succeed without error");
+    });
+
     it("can be used as the value in an extends clause");
 
+    // "Subclass constructors that intend to inherit the specified
+    // Promise behaviour must include a 'super' call to Promise"
+    
     // subclass constructors MAY include a 'super' call to Promise
-    // subclass constructors *that intend to inherit specified Promise behavior* MUST include such a call
+
+    // subclass constructors *that intend to inherit specified Promise
+    // behavior* MUST include such a call
 });
 
 describe("25.4.3.1 Promise ( executor )", function () {
