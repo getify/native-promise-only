@@ -88,14 +88,47 @@ describe("25.4.3.1 Promise ( executor )", function () {
 
 describe("25.4.3.1.1 InitializePromise ( promise, executor )", function () {
     it("returns a promise");
-    it("catches exceptions thrown from executor and turns them into reject", function () {
-	var errorObject = {};
-	var p = new Promise(function () { throw errorObject; });
-	p.then(undefined, function(err) {
-	    assert.equal(this, undefined);
-	    assert.equal(err, errorObject);
-	});
+    it("invokes the executor with 'this' = 'undefined'", function () {
+	var savedThis;
+	var p = new Promise(function () { savedThis = this; });
+
+	assert.equal(undefined, savedThis);
     });
+    it("catches exceptions thrown from executor and turns them into reject", function (done) {
+	// if completion is an abrupt completion
+	var errorObject = {};
+
+	var p = new Promise(function () { throw errorObject; });
+
+	p.then(undefined, function(err) {
+	    assert.equal(undefined, this);
+	    assert.equal(errorObject, err);
+	    done();
+	});
+
+    });
+
+    it("catches exceptions thrown from executor and turns them into *abrupt* reject", function () {
+	// if completion is an abrupt completion
+	var errorObject = {};
+	var savedThis = 1;
+	var savedError = 2;
+
+	var p = new Promise(function () { throw errorObject; });
+
+	// p should be in rejected state
+
+	// p should be in state 'rejected', 'then' should
+	// execute immediately
+	p.then(undefined, function(err) {
+	    savedThis = this;
+	    savedError = err;
+	});
+
+	assert.equal(undefined, savedThis);
+	assert.equal(errorObject, savedError);
+    });
+
     it("returns a promise either in the 'pending' or 'rejected' state");
 });
 
