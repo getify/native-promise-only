@@ -16,7 +16,7 @@ describe("25.4.3 The Promise Constructor", function () {
     // methods.
     it("can be called as a function", function () {
 	assert.doesNotThrow(function () {
-	    Promise();
+	    Promise.call({}, function () {});
 	}, "expect a bare call to Promise() to succeed without error");
     });
 
