@@ -1,0 +1,23 @@
+{
+  "name": "native-promise-only",
+  "version": "0.4.1-b",
+  "homepage": "https://github.com/getify/native-promise-only",
+  "authors": [
+    "Kyle Simpson <getify@gmail.com>"
+  ],
+  "description": "Native Promise Only: A polyfill for native ES6 Promises **only**, nothing else.",
+  "main": "lib/nop.src.js",
+  "keywords": [
+    "promise",
+    "promises",
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower.json",
+    "build.js",
+    "package.json",
+    "test_adapter.js"
+  ]
+}
