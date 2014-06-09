@@ -11,13 +11,10 @@ describe("25.4.3 The Promise Constructor", function () {
 	assert.strictEqual(Promise, global.Promise);
     });
 
-    // "When Promise is called as a function rather than as a constructor, it initializes
-    // its 'this' value with the internal state necessary to suppot the 'Promise.prototype'
-    // methods.
     it("can be called as a function", function () {
 	assert.doesNotThrow(function () {
 	    Promise.call({}, function () {});
-	}, "expect a bare call to Promise() to succeed without error");
+	});
     });
 
     it("can be used as the value in an extends clause");
