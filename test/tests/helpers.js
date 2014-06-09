@@ -66,5 +66,14 @@ module.exports.expectedReject = function expectedReject(obj, done) {
 	};
 }
 
+module.exports.expectedRejectFunc = function expectedRejectFunc(func, done) {
+	return function (err) {
+	    setImmediate(function (){
+		func(err);
+		done();
+	    });
+	};
+}
+
 module.exports.neverResolve = function neverResolve() {
 };
