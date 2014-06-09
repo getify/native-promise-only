@@ -20,10 +20,11 @@ describe("25.4.4.3 Promise.race( iterable )", function () {
 		// non-Object fails CheckIterable per 7.4.1
 		// GetIterator throws TypeError per 7.4.2
 
-		Promise.race(nonIterable).then(unexpectedResolve, function (err) {
-			assert.ok(err instanceof TypeError);
-			done();
-		});
+		Promise.race(nonIterable)
+		.then(unexpectedResolve,
+		      expectedRejectFunc(function (err) {
+			  assert.ok(err instanceof TypeError);
+		      }, done));
 	});
 	it("requires 'this' to be a constructor function that supports the " +
 	   "parameter conventions of the Promise constructor", function (done) {
@@ -31,7 +32,7 @@ describe("25.4.4.3 Promise.race( iterable )", function () {
 		assert.throws(function () {
 			Promise.race.call(empty, []);
 		}, TypeError);
-		   done();
+	       done();
 	});
 
 	it("requires 'this' to provide a 'resolve' method", function (done) {
@@ -117,9 +118,9 @@ describe("25.4.4.3 Promise.race with 2-element array", function () {
 	it("should reject immediately when second rejects", function (done) {
 		var p1 = new Promise(resolveAfter(10, 1)),
 		    p2 = new Promise(rejectImmediately(2));
-		
-		Promise.race([p1,p2]).then(unexpectedResolve,
+	    
+	    Promise.race([p1,p2]).then(unexpectedResolve,
 					   expectedReject(2, done));
 	});
-});
 
+});

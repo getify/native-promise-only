@@ -33,10 +33,10 @@ describe("25.4.4.5 Promise.resolve( x )", function () {
 	}, TypeError);
     });
 
-    it("can return a resolved promise", function () {
+    it("can return a resolved promise", function (done) {
 	var p1 = Promise.resolve(3);
 	
-	p1.then(expectedResolve(3), unexpectedReject);
+	p1.then(expectedResolve(3, done), unexpectedReject);
     });
 
     it("can return a pending promise", function (done) {
@@ -45,20 +45,23 @@ describe("25.4.4.5 Promise.resolve( x )", function () {
 	var sequencer = [1];
 
 	var p2 = Promise.resolve(p1).then(function (resolved) {
-	    assert.equal("resolve", resolved);
-	    sequencer.push(3);
-	    assert.deepEqual([1,2,3], sequencer);
-	    done();
+
+	    setImmediate(function () {
+		assert.equal("resolve", resolved);
+		sequencer.push(3);
+		assert.deepEqual([1,2,3], sequencer);
+		done();
+	    });
 	});
 
 	sequencer.push(2);
     });
 
-    it("can return a rejected promise", function () {
+    it("can return a rejected promise", function (done) {
 	var p1 = Promise.reject(3);
 	var p2 = Promise.resolve(p1);
 
-	p2.then(unexpectedResolve, expectedReject(3));
+	p2.then(unexpectedResolve, expectedReject(3, done));
     });
 
     it("can pass through a non-promise if passed a non-promise", function () {
