@@ -24,8 +24,8 @@ describe("25.4.4.4 Promise.reject( x )", function () {
 	    Promise.reject.call(notAConstructor, 4);
 	}, TypeError);
     });
-    it("always returns a rejected promise", function () {
+    it("always returns a rejected promise", function (done) {
 	var p = Promise.reject(3);
-	p.then(unexpectedResolve, expectedReject(3));
+	p.then(unexpectedResolve, expectedReject(3, done));
     });
 });
