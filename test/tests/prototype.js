@@ -44,21 +44,11 @@ describe("25.4.5.3 Promise.prototype.then", function () {
 	it("throws TypeError if 'this' is not a Promise");
 	it("takes two arguments, both optional, both functions");
 	it("has default on resolve: identity");
-	it("has default on reject: thrower", function () {
-		var errorObject = {};
-		var p = new Promise(function (resolve, reject) { reject(errorObject); });
-
-		// if IsCallable( onRejected ) returns false, then let
-		// onRejected be Thrower Thrower is a function which
-		// throws its first argument p.then(f) passes
-		// 'undefined' as onRejected, so onRejected should
-		// default to Thrower, which should throw the argument
-		// passed to it from reject
-		assert.throws(function () {
-			p.then(unexpectedResolve);
-		}, function(err) {
-			assert.equals(err, errorObject); 
-		});
+	it("has default on reject: thrower", function (done) {
+	    var errorObject = {};
+	    var p = new Promise(function (resolve, reject) { reject(errorObject); });
+	    
+	    p.then(unexpectedResolve).catch(expectedReject(errorObject, done));
 	});
 
 	it("does not call either function immediately if promise status is 'pending'");
