@@ -45,10 +45,7 @@ describe("25.4.3.1 Promise ( executor )", function () {
 	}, TypeError);
 	
 	// receive first resolution
-	p.then(function (resolved) {
-	    assert.equal(1, resolved);
-	    done();
-	});
+	p.then(expectedResolve(1, done));
     });
 
     it("throws TypeError if 'this' is a resolved Promise", function (done) {
@@ -62,11 +59,7 @@ describe("25.4.3.1 Promise ( executor )", function () {
 	    }, TypeError);
 
 	    // affirm that previous resolution is still settled
-	    p.then(function (resolved) {
-		assert.equal(resolved, 1);
-		done();
-	    });
-	    done();
+	    p.then(expectedResolve(1, done));
 	}
 
 	// receive first resolution
@@ -99,9 +92,12 @@ describe("25.4.3.1.1 InitializePromise ( promise, executor )", function () {
 	var p = new Promise(function () { throw errorObject; });
 
 	p.then(undefined, function(err) {
-	    assert.equal(undefined, this);
-	    assert.equal(errorObject, err);
-	    done();
+	    var onRejectedThis = this;
+	    setImmediate(function () {
+		assert.equal(undefined, onRejectedThis);
+		assert.equal(errorObject, err);
+		done();
+	    });
 	});
 
     });
