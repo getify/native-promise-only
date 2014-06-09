@@ -2,12 +2,17 @@
 
 var assert = require('assert');
 
+
 module.exports.unexpectedResolve = function unexpectedResolve(resolved) {
+    setImmediate(function () {
 	throw "Unexpected resolve " + resolved;
+    });
 }
 
 module.exports.unexpectedReject = function unexpectedReject(err) { 
+    setImmediate(function () {
 	throw "Unexpected reject " + err;
+    });
 }
 
 module.exports.resolveImmediately = function resolveImmediately(arg) {
@@ -36,22 +41,28 @@ module.exports.rejectAfter = function rejectAfter(time, arg) {
 
 module.exports.expectedResolve = function expectedResolve(obj, done) {
 	return function (resolved) {
+	    setImmediate(function () {
 		assert.equal(obj, resolved);
 		done();
+	    });
 	};
 }
 
 module.exports.expectedResolveDeep = function expectedResolveDeep(obj, done) {
 	return function (resolved) {
+	    setImmediate(function () {
 		assert.deepEqual(obj, resolved);
 		done();
+	    });
 	};
 }
 
 module.exports.expectedReject = function expectedReject(obj, done) {
 	return function (resolved) {
+	    setImmediate(function (){
 		assert.equal(obj, resolved);
 		done();
+	    });
 	};
 }
 
