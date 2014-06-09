@@ -39,10 +39,11 @@ describe("25.4.4.1 Promise.all( iterable )", function () {
 		// non-Object fails CheckIterable per 7.4.1
 		// GetIterator throws TypeError per 7.4.2
 		
-		Promise.all(nonIterable).then(unexpectedResolve, function (err) {
-			assert.ok(err instanceof TypeError);
-			done();
-		});
+		Promise.all(nonIterable)
+		.then(unexpectedResolve,
+		      expectedRejectFunc(function (err) {
+			  assert.ok(err instanceof TypeError);
+		      }, done));
 	});
 });
 
@@ -107,8 +108,10 @@ describe("25.4.4.1 with 2-element array", function () {
 		var allResolved = false;
 
 		p1.then(function (resolved) {
+		    setImmediate(function () {
 			assert.equal(resolved, 1);
 			assert.equal(allResolved, false);
+		    });
 		});
 
 		Promise.all([p1, p2]).then(function (resolved) {
@@ -116,9 +119,11 @@ describe("25.4.4.1 with 2-element array", function () {
 		}, unexpectedReject);
 
 		p2.then(function (resolved) {
+		    setImmediate(function () {
 			assert.equal(resolved, 2);
 			assert.equal(allResolved, true);
 			done();
+		    });
 		});
 	});
 	// covered by case above
@@ -128,20 +133,18 @@ describe("25.4.4.1 with 2-element array", function () {
 		var p1 = new Promise(rejectAfter(10, 1)),
 		    p2 = new Promise(resolveAfter(20, 2));
 		
-		Promise.all([p1, p2]).then(unexpectedResolve, function (err) {
-			assert.equal(err, 1);
-			done();
-		});
+		Promise.all([p1, p2])
+		.then(unexpectedResolve,
+		      expectedReject(1, done));
 	});
 
 	it("should reject immediately when the second member of a two-promise array rejects", function (done) {
 		var p1 = new Promise(resolveAfter(10, 1)),
 		    p2 = new Promise(rejectAfter(20, 2));
 		
-		Promise.all([p1, p2]).then(unexpectedResolve, function (err) {
-			assert.equal(err, 2);
-			done();
-		});
+		Promise.all([p1, p2])
+		.then(unexpectedResolve,
+		      expectedReject(2, done));
 	});
 });
 
