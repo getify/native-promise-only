@@ -35,7 +35,7 @@ describe("25.4.3.1 Promise ( executor )", function () {
 	}, TypeError);
     });
 
-    it("throws TypeError if 'this' is a previously-initialized as-yet-unsettled Promise", function (done) {
+    it("throws TypeError if 'this' is a constructed, but unresolved Promise", function (done) {
 	var p = new Promise(resolveAfter(10,1));
 
 	// promise's [[PromiseState]] internal slot should be 'pending'
@@ -51,7 +51,7 @@ describe("25.4.3.1 Promise ( executor )", function () {
 	});
     });
 
-    it("throws TypeError if 'this' is a previously-settled Promise", function (done) {
+    it("throws TypeError if 'this' is a resolved Promise", function (done) {
 	var p = new Promise(function (resolve, reject) { resolve(1); });
 	
 	function afterFirstResolution() {
