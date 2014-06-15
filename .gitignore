@@ -1,2 +1,5 @@
 node_modules
 npo.js
+coverage
+*~
+npm-debug.log
