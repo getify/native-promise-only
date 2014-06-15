@@ -5,9 +5,12 @@
 	"main": "./npo.js",
 	"scripts": {
 		"test": "promises-aplus-tests test_adapter.js",
+		"cover": "istanbul cover --print=both ./node_modules/mocha/bin/_mocha",
 		"build": "./build.js"
 	},
 	"devDependencies": {
+		"istanbul": "^0.2.10",
+		"mocha": "^1.20.1",
 		"promises-aplus-tests": "*",
 		"uglify-js": "~2.4.8"
 	},
