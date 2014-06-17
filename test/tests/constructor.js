@@ -12,8 +12,9 @@ describe("25.4.3 The Promise Constructor", function () {
     });
 
     it("can be called as a function", function () {
+	var p = Object.create(Promise.prototype);
 	assert.doesNotThrow(function () {
-	    Promise.call({}, function () {});
+	    Promise.call(p, function () {});
 	});
     });
 
