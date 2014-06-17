@@ -64,15 +64,9 @@ describe("25.4.4.5 Promise.resolve( x )", function () {
 	p2.then(unexpectedResolve, expectedReject(3, done));
     });
 
-    it("can pass through a non-promise if passed a non-promise", function () {
-	var Base = function () {};
-	var notPromise = new Base();
-
-	// TODO(Sam): check spec compliance here (25.4.1.7)
-	// IsPromise() requires check for existence of
-	// [[PromiseState]] internal slot; not possible in npo
-	var p = Promise.resolve.call(Base, notPromise);
-
-	assert.equal(notPromise, p);
-    });
+    // 25.4.4.5 steps 2 a & b:
+    // 2. if IsPromise(x) is true
+    //   a. Let constructor be the value of x's PromiseConstructor
+    //   b. if SameValue(Constructor, C) is true, return x
+    it("can pass through a subclassed promise if passed a subclassed promise");
 });
