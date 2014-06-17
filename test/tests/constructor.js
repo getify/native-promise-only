@@ -11,12 +11,14 @@ describe("25.4.3 The Promise Constructor", function () {
 	assert.strictEqual(Promise, global.Promise);
     });
 
-    it("can be called as a function", function () {
-	var p = Object.create(Promise.prototype);
-	assert.doesNotThrow(function () {
-	    Promise.call(p, function () {});
-	});
-    });
+    it("can be called as a function");
+    // requires a functioning ES6 Symbol.create
+    //, function () {
+    //	var p = Promise[Symbol.create]();
+    // assert.doesNotThrow(function () {
+    // Promise.call(p, function () {});
+    // });
+    //});
 
     it("can be used as the value in an extends clause");
 
