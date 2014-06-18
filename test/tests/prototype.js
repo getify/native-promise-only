@@ -3,12 +3,9 @@
 
 var assert = require("assert");
 
-var helpers = require("./helpers.js");
-Object.keys(helpers).map(function (name) { global[name] = helpers[name]; });
-
 describe("25.4.4.2 Promise.prototype", function () {
     it("is the Promise prototype object", function () {
-	var p = new Promise(neverResolve);
+	var p = new Promise(function () {});
 
 	assert.ok(p instanceof Promise);
 	// TODO(Sam): is there any way to ensure that there are no
@@ -48,7 +45,9 @@ describe("25.4.5.3 Promise.prototype.then", function () {
 	    var errorObject = {};
 	    var p = new Promise(function (resolve, reject) { reject(errorObject); });
 	    
-	    p.then(unexpectedResolve).catch(expectedReject(errorObject, done));
+	    p.then().catch(function (rejected) {
+            assert.equal(errorObject, rejected);
+        }).then(done).catch(done);
 	});
 
 	it("does not call either function immediately if promise status is 'pending'");
