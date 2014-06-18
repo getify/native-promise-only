@@ -11,17 +11,17 @@ describe("25.4.4.5 Promise.resolve( x )", function () {
     });
 
     it("passes through a resolved promise created with the same constructor as 'this'", function (done) {
-	var p1 = new Promise(function (resolve) { resolve(1); }),
-	    p2;
+	    var p1 = new Promise(function (resolve) { resolve(1); }),
+	        p2;
 
-	p1.then(function (r1) {
-	    assert.equal(1, r1);
-	    p2 = Promise.resolve(p1)
-		.then(function (r2) {
-		    assert.equal(1, r2);
-		    assert.equal(p1, p2);
-		}).then(done).catch(done);
-	}).catch(done);
+	    p1.then(function (r1) {
+	        assert.equal(1, r1);
+	        p2 = Promise.resolve(p1);
+		    p2.then(function (r2) {
+		        assert.equal(1, r2);
+		        assert.equal(p1, p2);
+		    }).then(done).catch(done);
+	    }).catch(done);
     });
 
     it("passes through an unsettled promise created with the same constructor as 'this'", function (done) {
