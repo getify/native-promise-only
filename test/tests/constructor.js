@@ -1,10 +1,6 @@
 "use strict";
 
-var assert = require("assert"),
-    path = require("path");
-
-var helpers = require("./helpers.js");
-var resolveAfter = helpers.resolveAfter;
+var assert = require("assert");
 
 describe("25.4.3 The Promise Constructor", function () {
     it("is the initial value of the Promise property of the global object", function () {
@@ -39,16 +35,21 @@ describe("25.4.3.1 Promise ( executor )", function () {
     });
 
     it("throws TypeError if 'this' is a constructed, but unresolved Promise", function (done) {
-	var p = new Promise(resolveAfter(10,1));
+	var resolveP,
+	    p = new Promise(function (resolve, reject) { resolveP = resolve; });
 
 	// promise's [[PromiseState]] internal slot should be 'pending'
 	// should throw
 	assert.throws(function () {
 	    Promise.call(p, function (resolve, reject) { resolve(2); });
 	}, TypeError);
-	
+
 	// receive first resolution
-	p.then(expectedResolve(1, done));
+	p.then(function (resolved) {
+	    assert.equal(1, resolved);
+	}).then(done).catch(done);
+
+	resolveP(1);
     });
 
     it("throws TypeError if 'this' is a resolved Promise", function (done) {
@@ -62,14 +63,16 @@ describe("25.4.3.1 Promise ( executor )", function () {
 	    }, TypeError);
 
 	    // affirm that previous resolution is still settled
-	    p.then(expectedResolve(1, done));
+	    p.then(function (resolved) {
+		assert.equal(1, resolved);
+	    }).then(done).catch(done);
 	}
 
 	// receive first resolution
 	p.then(function (resolved) {
 	    assert.equal(resolved, 1);
 
-	    setImmediate(afterFirstResolution);
+	    Promise.resolve().then(afterFirstResolution);
 	});
     });
 
@@ -95,13 +98,9 @@ describe("25.4.3.1.1 InitializePromise ( promise, executor )", function () {
 	var p = new Promise(function () { throw errorObject; });
 
 	p.then(undefined, function(err) {
-	    var onRejectedThis = this;
-	    setImmediate(function () {
-		assert.equal(undefined, onRejectedThis);
-		assert.equal(errorObject, err);
-		done();
-	    });
-	});
+	    assert.equal(undefined, this);
+	    assert.equal(errorObject, err);
+	}).then(done).catch(done);
 
     });
 
