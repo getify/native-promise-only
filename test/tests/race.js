@@ -129,14 +129,14 @@ describe("25.4.4.3 Promise.race with 2-element array", function() {
 				rejectP2 = reject;
 			});
 
-		rejectP2(2);
-		resolveP1(1);
-
 		Promise.race([p1, p2]).then(function(resolved) {
 			throw new Error("Unexpected resolve " + resolved);
 		}, function(rejected) {
 			assert.equal(rejected, 2);
 		}).then(done).catch(done);
+
+		rejectP2(2);
+		resolveP1(1);
 	});
 
 });
