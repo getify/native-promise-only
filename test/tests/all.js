@@ -168,14 +168,14 @@ describe("25.4.4.1 with 2-element array", function() {
 		}).catch(done);
 
 		Promise.all([p1, p2]).then(function afterAll(resolved) {
-			assert.deepEqual([1, 2], sequencer);
-			sequencer.push(3);
-		}).catch(done);
-
-		p2.then(function afterTwo(resolved) {
 			assert.deepEqual([1, 2, 3], sequencer);
 			sequencer.push(4);
 		}).then(done).catch(done);
+
+		p2.then(function afterTwo(resolved) {
+			assert.deepEqual([1, 2], sequencer);
+			sequencer.push(3);
+		}).catch(done);
 
 	});
 	// covered by case above
