@@ -120,6 +120,24 @@ describe("25.4.4.3 Promise.race with 2-element array", function() {
 		}).then(done).catch(done);
 
 	});
+
+	it("should fulfill immediately with first fulfilled promise in array", function(done) {
+		var resolveP1, rejectP2,
+			p1 = new Promise(function(resolve, reject) {
+				resolveP1 = resolve;
+			}),
+			p2 = new Promise(function(resolve, reject) {
+				rejectP2 = reject;
+			});
+
+		rejectP2(2);
+		resolveP1(1);
+
+		Promise.race([p1, p2]).then(function(resolved) {
+			assert.equal(resolved, 1);
+		}).then(done).catch(done);
+	});
+
 	it("should reject immediately when second rejects", function(done) {
 		var resolveP1, rejectP2,
 			p1 = new Promise(function(resolve, reject) {
@@ -138,5 +156,4 @@ describe("25.4.4.3 Promise.race with 2-element array", function() {
 		rejectP2(2);
 		resolveP1(1);
 	});
-
 });
