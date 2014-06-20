@@ -128,19 +128,53 @@ describe("25.4.4.1 with 2-element array", function() {
 			});
 
 		var allResolved = false;
+		var sequencer = [1];
 
 		p1.then(function(resolved) {
 			assert.equal(resolved, 1);
 			assert.equal(allResolved, false);
+
+			assert.deepEqual([1], sequencer);
+			sequencer.push(2);
 		}).catch(done);
 
 		Promise.all([p1, p2]).then(function(resolved) {
 			allResolved = true;
+
+			assert.deepEqual([1, 2], sequencer);
+			sequencer.push(3);
 		}).catch(done);
 
 		p2.then(function(resolved) {
 			assert.equal(resolved, 2);
+
+			assert.deepEqual([1, 2, 3], sequencer);
+			sequencer.push(4);
+
 			assert.equal(allResolved, true);
+		}).then(done).catch(done);
+
+	});
+
+	it("should should execute 'then' methods in sequence", function(done) {
+		var p1 = Promise.resolve(100),
+			p2 = Promise.resolve(200);
+
+		var sequencer = [1];
+
+		p1.then(function afterOne(resolved) {
+			assert.deepEqual([1], sequencer);
+			sequencer.push(2);
+		}).catch(done);
+
+		Promise.all([p1, p2]).then(function afterAll(resolved) {
+			assert.deepEqual([1, 2], sequencer);
+			sequencer.push(3);
+		}).catch(done);
+
+		p2.then(function afterTwo(resolved) {
+			assert.deepEqual([1, 2, 3], sequencer);
+			sequencer.push(4);
 		}).then(done).catch(done);
 
 	});
