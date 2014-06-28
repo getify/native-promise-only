@@ -90,14 +90,7 @@ Any trade-off is a shame, but this one is the least of a few evils, and probably
 
 ## ES5 Assumption
 
-This polyfill assumes some ES5+ capabilities, such as `Function#bind` and `Array#forEach`. If you need to use this polyfill in pre-ES5 environments, make sure to provide polyfills/shims [such as these](https://github.com/es-shims/es5-shim).
-
-Specifically, *Native Promise Only* needs:
-
-* `Array.isArray`
-* `Array#forEach`
-* `Array#some`
-* `Function#bind`
+This polyfill assumes ES5+ capabilities, specifically `Array.isArray`. If you need to use this polyfill in pre-ES5 environments, make sure to also provide the appropriate polyfills ([such as the ones provided here](https://github.com/es-shims/es5-shim)).
 
 ## Still Want More?
 
@@ -111,9 +104,9 @@ But it's quite likely that you will [experience a variety of scenarios](http://b
 
 You simply express your async flow-control and *asynquence* creates and chains all the promises for you underneath. **Super simple.**
 
-*asynquence* has a custom implementation for the hidden "promises" it uses, and as such does not need native `Promises`, nor does it need/include this polyfill.
+*asynquence* has a custom implementation for the internal "promises" it uses, and as such does not need native `Promises`, nor does it need/include this polyfill.
 
-Get your feet wet with native promises first, but then when you go looking for something more, consider [asynquence](http://github.com/getify/asynquence) (which is vastly more powerful and is still only 2k!).
+Get your feet wet with native promises first, but then when you go looking for something more, consider [asynquence](http://github.com/getify/asynquence) (which is [vastly more powerful](http://davidwalsh.name/asynquence-part-1) and is still only ~2k!).
 
 ## Tests/Compliance
 
