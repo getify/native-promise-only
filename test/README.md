@@ -12,7 +12,8 @@ regarded as a definitive claim of what the ES6 standard requires.
 
 These tests also do **NOT** supersede the promises-aplus tests.  These
 tests are orthogonal to promises-aplus/pormises-tests.  For best
-results, run both sets of tests.  (See below.)
+results, run both sets of tests.  This is done by default by the included 
+test case `test/tests/zz_aplus_suite`.
 
 ## How To Run
 
@@ -71,3 +72,6 @@ promisesES6Tests(adapter, function (err) {
     // tests complete; output to console; `err` is number of failures
 });
 ```
+
+## Structure of Tests
+
