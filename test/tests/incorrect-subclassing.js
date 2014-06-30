@@ -18,6 +18,14 @@ describe("incorrect subclassing:", function () {
 	BadResolverPromise.reject = Promise.reject;
 	BadResolverPromise.resolve = Promise.resolve;
 
+	it("throws TypeError with Promise.reject", function (done) {
+	    assert.throws(function() {
+		BadResolverPromise.reject(2);
+	    }, TypeError);
+
+	    done();
+	});
+
 	it("provides a resolve which is not a function", function (done) {
 	    var brp = new BadResolverPromise(function executor(resolve, reject) {
 		assert(typeof resolve != "function");
@@ -51,14 +59,6 @@ describe("incorrect subclassing:", function () {
 	    done();
 	});
 
-	it("throws TypeError with Promise.reject", function (done) {
-	    assert.throws(function() {
-		BadResolverPromise.reject(2);
-	    }, TypeError);
-
-	    done();
-	});
-
 	it("throws TypeError with Promise.then", function (done) {
 	    assert.throws(function() {
 		new BadResolverPromise(function () {}).then(function () {});
@@ -77,7 +77,7 @@ describe("incorrect subclassing:", function () {
 	    this.then = p.then;
 	    this.constructor = BadRejectorPromise;
 	}
-	BadRejectorPromise.prototype = Promise;
+	BadRejectorPromise.prototype = Promise.prototype;
 	BadRejectorPromise.all = Promise.all;
 	BadRejectorPromise.race = Promise.race;
 	BadRejectorPromise.reject = Promise.reject;
