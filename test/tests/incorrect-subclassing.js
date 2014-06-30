@@ -3,7 +3,7 @@
 var assert = require("assert");
 
 describe("incorrect subclassing:", function () {
-    describe("invalid 'resolve':", function() {
+    describe("25.4.1.6.1 step 8 invalid 'resolve':", function() {
     
 	function BadResolverPromise(executor) {
 	    var p = new Promise(executor);
@@ -68,7 +68,7 @@ describe("incorrect subclassing:", function () {
 	});
     });
 
-    describe("invalid 'reject'", function() {
+    describe("25.4.1.6.1 step 9 invalid 'reject'", function() {
     
 	function BadRejectorPromise(executor) {
 	    var p = new Promise(executor);
