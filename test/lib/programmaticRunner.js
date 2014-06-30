@@ -4,7 +4,7 @@ var Mocha = require("mocha");
 var path = require("path");
 var fs = require("fs");
 
-var testsDir = path.resolve(__dirname, "tests");
+var testsDir = path.resolve(__dirname, "../tests");
 
 function normalizeAdapter(adapter) {
     if (!adapter.resolved) {

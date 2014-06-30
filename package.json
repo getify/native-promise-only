@@ -5,7 +5,7 @@
 	"main": "./npo.js",
 	"scripts": {
 		"test": "promises-aplus-tests test_adapter.js",
-		"cover": "istanbul cover --root lib -x npo.js --print=both -- test/cli.js test_adapter.js",
+		"cover": "istanbul cover --root lib -x npo.js --print=both -- test/lib/cli.js test_adapter.js",
 		"build": "./build.js"
 	},
 	"devDependencies": {
