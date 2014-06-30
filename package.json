@@ -1,6 +1,6 @@
 {
 	"name": "native-promise-only",
-	"version": "0.7.2-a",
+	"version": "0.7.3-c",
 	"description": "Native Promise Only: A polyfill for native ES6 Promises **only**, nothing else.",
 	"main": "./npo.js",
 	"scripts": {
@@ -21,7 +21,8 @@
 	"keywords": [
 		"ES6",
 		"Promise",
-		"async"
+		"async",
+		"promises-aplus"
 	],
 	"bugs": {
 		"url": "https://github.com/getify/native-promise-only/issues",

@@ -88,16 +88,9 @@ Many other ES6 promise shims/libs seem to have forgotten that important point, a
 
 Any trade-off is a shame, but this one is the least of a few evils, and probably won't prove to limit very many, as there are only a limited number of use-cases for `extend`ing `Promise` in the ES6 sub-class sense.
 
-## ES5 Assumption
+## ES5+
 
-This polyfill assumes some ES5+ capabilities, such as `Function#bind` and `Array#forEach`. If you need to use this polyfill in pre-ES5 environments, make sure to provide polyfills/shims [such as these](https://github.com/es-shims/es5-shim).
-
-Specifically, *Native Promise Only* needs:
-
-* `Array.isArray`
-* `Array#forEach`
-* `Array#some`
-* `Function#bind`
+This polyfill assumes ES5+ capabilities, such as `Array.isArray`. If you need to use this polyfill in pre-ES5 environments (like IE <= 8), make sure to also include/bundle the `legacy.js` file provided with this repo/package, which includes the needed ES5 shim(s).
 
 ## Still Want More?
 
@@ -111,9 +104,9 @@ But it's quite likely that you will [experience a variety of scenarios](http://b
 
 You simply express your async flow-control and *asynquence* creates and chains all the promises for you underneath. **Super simple.**
 
-*asynquence* has a custom implementation for the hidden "promises" it uses, and as such does not need native `Promises`, nor does it need/include this polyfill.
+*asynquence* has a custom implementation for the internal "promises" it uses, and as such does not need native `Promises`, nor does it need/include this polyfill.
 
-Get your feet wet with native promises first, but then when you go looking for something more, consider [asynquence](http://github.com/getify/asynquence) (which is vastly more powerful and is still only 2k!).
+Get your feet wet with native promises first, but then when you go looking for something more, consider [asynquence](http://github.com/getify/asynquence) (which is [vastly more powerful](http://davidwalsh.name/asynquence-part-1) and is still only ~2k!).
 
 ## Tests/Compliance
 
