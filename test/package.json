@@ -1,0 +1,34 @@
+{
+  "name": "promises-es6-tests",
+  "description": "Compliance test suite for ECMA-262 Promises",
+  "keywords": [
+    "promises",
+    "ecma-262"
+  ],
+  "version": "0.1.0",
+  "author": {
+    "name": "Sam Mikes",
+    "email": "smikes@cubane.com"
+  },
+  "license": "ECMA",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/smikes/native-promise-only.git"
+  },
+  "main": "lib/programmaticRunner.js",
+  "bin": {
+    "promises-es6-tests": "lib/cli.js"
+  },
+  "scripts": {
+    "lint": "jshint lib",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "mocha": "~1.17.1",
+    "sinon": "~1.9.0",
+    "underscore": "~1.6.0"
+  },
+  "devDependencies": {
+    "jshint": "~2.4.4"
+  }
+}
