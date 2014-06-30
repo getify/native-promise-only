@@ -13,6 +13,8 @@ function chooseSource(file) {
 module.exports = chooseSource;
 
 function setExports(exports, Promise) {
+    var savedPromise;
+
 	exports.deferred = function __deferred__() {
 		var o = {};
 		o.promise = new Promise(function __Promise__(resolve,reject){
@@ -31,11 +33,13 @@ function setExports(exports, Promise) {
 	};
 
         exports.defineGlobalPromise = function __defineGlobalPromise__(globalScope) {
+	    savedPromise = globalScope.Promise;
 	    globalScope.Promise = Promise;
 	};
 
         exports.removeGlobalPromise = function __defineGlobalPromise__(globalScope) {
 	    delete globalScope.Promise;
+	    globalScope.Promise = savedPromise;
 	};
 }
 
