@@ -1,6 +1,7 @@
 "use strict";
 // Adapter for "promises-aplus-tests" test runner
 var path = require("path");
+var assert = require("assert");
 
 function chooseSource(file) {
 	file = file || "/lib/npo.src.js"; // default to un-uglified
@@ -35,6 +36,8 @@ function setExports(exports, Promise) {
         exports.defineGlobalPromise = function __defineGlobalPromise__(globalScope) {
 	    savedPromise = globalScope.Promise;
 	    globalScope.Promise = Promise;
+
+	    global.assert = assert;
 	};
 
         exports.removeGlobalPromise = function __defineGlobalPromise__(globalScope) {

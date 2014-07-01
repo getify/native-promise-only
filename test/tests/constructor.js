@@ -1,6 +1,5 @@
 "use strict";
 
-var assert = require("assert");
 
 describe("25.4.3 The Promise Constructor", function() {
 	it("is the initial value of the Promise property of the global object", function() {

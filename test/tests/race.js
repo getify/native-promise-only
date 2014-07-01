@@ -2,7 +2,6 @@
 /*global Promise, require, setImmediate, setTimeout, describe, it */
 "use strict";
 
-var assert = require("assert");
 
 describe("25.4.4.3 Promise.race( iterable )", function() {
 	it("is a function", function() {

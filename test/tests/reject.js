@@ -1,6 +1,5 @@
 "use strict";
 
-var assert = require("assert");
 
 describe("25.4.4.4 Promise.reject( x )", function() {
 	it("is a function", function() {

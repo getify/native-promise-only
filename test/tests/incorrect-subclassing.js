@@ -1,6 +1,5 @@
 "use strict";
 
-var assert = require("assert");
 
 describe("incorrect subclassing:", function () {
     describe("25.4.1.6.1 step 8 invalid 'resolve':", function() {

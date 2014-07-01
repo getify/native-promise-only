@@ -1,6 +1,5 @@
 "use strict";
 
-var assert = require("assert");
 
 describe("Sequencing tests from promises-aplus/issue #61", function() {
 	it("T1", function(done) {

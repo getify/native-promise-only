@@ -1,7 +1,6 @@
 /*global Promise, require, setImmediate, setTimeout, describe, it */
 "use strict";
 
-var assert = require("assert");
 
 function unexpectedResolve(done) {
 	return function() {
