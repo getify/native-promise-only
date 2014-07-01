@@ -88,10 +88,6 @@ Many other ES6 promise shims/libs seem to have forgotten that important point, a
 
 Any trade-off is a shame, but this one is the least of a few evils, and probably won't prove to limit very many, as there are only a limited number of use-cases for `extend`ing `Promise` in the ES6 sub-class sense.
 
-## ES5+
-
-This polyfill assumes ES5+ capabilities, such as `Array.isArray`. If you need to use this polyfill in pre-ES5 environments (like IE <= 8), make sure to also include/bundle the `legacy.js` file provided with this repo/package, which includes the needed ES5 shim(s).
-
 ## Still Want More?
 
 This project intentionally adheres pretty strictly to the narrow core of [Promises/A+](http://promisesaplus.com) as adopted/implemented by ES6 into the native `Promise()` mechanism.
