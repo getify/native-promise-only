@@ -12,6 +12,7 @@
 		"istanbul": "^0.2.10",
 		"mocha": "^1.20.1",
 		"promises-aplus-tests": "*",
+		"promises-es6-tests": "^0.3.2",
 		"uglify-js": "~2.4.8"
 	},
 	"repository": {
