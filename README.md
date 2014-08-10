@@ -4,7 +4,7 @@ A polyfill for native ES6 Promises as close as possible (no extensions) to the s
 
 ## Intent
 
-The aim of this project is to be the smallest polyfill for Promises, staying as close as possible to what's specified in both [Promises/A+](http://promisesaplus.com) and the upcoming ES6 specification (**link needed**).
+The aim of this project is to be the smallest polyfill for Promises, staying as close as possible to what's specified in both [Promises/A+](http://promisesaplus.com) and the [upcoming ES6 specification](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise-objects).
 
 An equally important goal is to avoid exposing any capability for promise-state to be mutated externally. The [Known Limitations](#known-limitations) section below explains the trade-offs of that balance.
 
