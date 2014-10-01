@@ -4,7 +4,7 @@ A polyfill for native ES6 Promises as close as possible (no extensions) to the s
 
 ## Intent
 
-The aim of this project is to be the smallest polyfill for Promises, staying as close as possible to what's specified in both [Promises/A+](http://promisesaplus.com) and the upcoming ES6 specification (**link needed**).
+The aim of this project is to be the smallest polyfill for Promises, staying as close as possible to what's specified in both [Promises/A+](http://promisesaplus.com) and the [upcoming ES6 specification](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise-objects).
 
 An equally important goal is to avoid exposing any capability for promise-state to be mutated externally. The [Known Limitations](#known-limitations) section below explains the trade-offs of that balance.
 
@@ -88,17 +88,6 @@ Many other ES6 promise shims/libs seem to have forgotten that important point, a
 
 Any trade-off is a shame, but this one is the least of a few evils, and probably won't prove to limit very many, as there are only a limited number of use-cases for `extend`ing `Promise` in the ES6 sub-class sense.
 
-## ES5 Assumption
-
-This polyfill assumes some ES5+ capabilities, such as `Function#bind` and `Array#forEach`. If you need to use this polyfill in pre-ES5 environments, make sure to provide polyfills/shims [such as these](https://github.com/es-shims/es5-shim).
-
-Specifically, *Native Promise Only* needs:
-
-* `Array.isArray`
-* `Array#forEach`
-* `Array#some`
-* `Function#bind`
-
 ## Still Want More?
 
 This project intentionally adheres pretty strictly to the narrow core of [Promises/A+](http://promisesaplus.com) as adopted/implemented by ES6 into the native `Promise()` mechanism.
@@ -111,9 +100,9 @@ But it's quite likely that you will [experience a variety of scenarios](http://b
 
 You simply express your async flow-control and *asynquence* creates and chains all the promises for you underneath. **Super simple.**
 
-*asynquence* has a custom implementation for the hidden "promises" it uses, and as such does not need native `Promises`, nor does it need/include this polyfill.
+*asynquence* has a custom implementation for the internal "promises" it uses, and as such does not need native `Promises`, nor does it need/include this polyfill.
 
-Get your feet wet with native promises first, but then when you go looking for something more, consider [asynquence](http://github.com/getify/asynquence) (which is vastly more powerful and is still only 2k!).
+Get your feet wet with native promises first, but then when you go looking for something more, consider [asynquence](http://github.com/getify/asynquence) (which is [vastly more powerful](http://davidwalsh.name/asynquence-part-1) and is still only ~2k!).
 
 ## Tests/Compliance
 
