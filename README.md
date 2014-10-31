@@ -14,13 +14,19 @@ To use this polyfill in the browser, include the "npo.js" file (see the instruct
 
 To use with AMD, import the "npo.js" file module.
 
-To use the polyfill in node, run:
+To install the polyfill via bower, run:
+
+```
+bower install native-promise-only
+```
+
+To install the polyfill via npm, run:
 
 ```
 npm install native-promise-only
 ```
 
-Then require the module into your node code.
+Then require the module into your node code:
 
 ```js
 require("native-promise-only");
