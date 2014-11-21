@@ -4,7 +4,8 @@ var fs = require("fs"),
 	path = require("path"),
 	exec = require("child_process").exec,
 	ugly = require("uglify-js"),
-
+        files = ["header.js", "guards.js", "npo.src.js"],
+        
 	result
 ;
 
@@ -12,12 +13,12 @@ console.log("*** Building ***");
 console.log("Minifying to npo.js.");
 
 try {
-	result = ugly.minify(path.join(__dirname,"lib","npo.src.js"),{
+	result = ugly.minify(files.map(function (f) {
+			return path.join(__dirname,"lib",f);
+		}),{
 		mangle: true,
 		compress: true,
-		output: {
-			comments: /^!/
-		}
+		output: { comments: /^!/ }
 	});
 
 	fs.writeFileSync(
