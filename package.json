@@ -1,14 +1,14 @@
 {
 	"name": "native-promise-only",
-	"version": "0.8.0-a",
+	"version": "0.8.1",
 	"description": "Native Promise Only: A polyfill for native ES6 Promises **only**, nothing else.",
-	"main": "./npo.js",
+	"main": "./lib/npo.src.js",
 	"scripts": {
 		"test": "promises-aplus-tests test_adapter.js",
 		"build": "./build.js"
 	},
 	"devDependencies": {
-		"promises-aplus-tests": "*",
+		"promises-aplus-tests": "latest",
 		"uglify-js": "~2.4.8"
 	},
 	"repository": {
