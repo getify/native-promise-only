@@ -1,5 +1,7 @@
 # Native Promise Only (NPO)
 
+[![CDNJS](https://img.shields.io/cdnjs/v/native-promise-only.svg)](https://cdnjs.com/libraries/native-promise-only/)
+
 A polyfill for native ES6 Promises as close as possible (no extensions) to the strict spec definitions.
 
 ## Intent
