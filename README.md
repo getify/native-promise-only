@@ -34,6 +34,12 @@ Then require the module into your node code:
 require("native-promise-only");
 ```
 
+To use the polyfill via bower, run:
+
+```
+bower install native-promise-only
+```
+
 Notice that using the module in this way, we don't assign the module's public API to any variable. **We don't need to**, because it's a polyfill that intentionally patches the global environment (in this case to the `Promise` name) once included.
 
 If you *want* to also have a reference pointing to the same `Promise` global, you *can also* assign the return value from the `require(..)` statement, but it's strongly recommended that you use the same `Promise` name so as to not create confusion:
