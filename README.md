@@ -44,7 +44,7 @@ var Promise = require("native-promise-only");
 // Promise === global.Promise; // true!
 ```
 
-Other than the below [Known Limitations](#known-limitations) discussion and some browser bugs (such as [these](https://gist.github.com/getify/bd11ccf1eff2efdac0fb)) which **this polyfill doesn't suffer from**, your promises should operate the same in all JS environments.
+Other than the below [Known Limitations](#known-limitations) discussion ~~and some browser bugs (such as [these](https://gist.github.com/getify/bd11ccf1eff2efdac0fb)) which **this polyfill doesn't suffer from**~~, your promises should operate the same in all JS environments.
 
 Exactly like native promises, here's a quick example of how you create and use the polyfilled promises:
 
